@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelWS_App.Model
 {
-    public class Guest
+    public class Guest : INotifyPropertyChanged
     {
         public int Guest_No { get; set; }
 
@@ -20,6 +21,8 @@ namespace HotelWS_App.Model
             this.Name = name;
             this.Address = address;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
