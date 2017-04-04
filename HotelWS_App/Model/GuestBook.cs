@@ -8,7 +8,6 @@ namespace HotelWS_App.Model
 {
     class GuestBook
     {
-
         public int Guest_No { get; set; }
 
         public string Name { get; set; }

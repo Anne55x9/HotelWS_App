@@ -96,6 +96,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Facade\facade.cs" />
+    <Compile Include="Model\Guest.cs" />
+    <Compile Include="Model\GuestSingleton.cs" />
     <Compile Include="View\GuestBookView.xaml.cs">
       <DependentUpon>GuestBookView.xaml</DependentUpon>
     </Compile>
