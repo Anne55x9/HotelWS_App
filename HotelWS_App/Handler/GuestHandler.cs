@@ -18,14 +18,17 @@ namespace HotelWS_App.Handler
             this.Gvm = gvm;
         }
 
-        public void GetGuest()
+        public async void GetGuest()
         {
-            Guest tempGuest = new Model.Guest(Gvm.Guest_No, Gvm.Name, Gvm.Address);
-            tempGuest.Guest_No = Gvm.Guest_No;
-            tempGuest.Name = Gvm.Name;
-            tempGuest.Address = Gvm.Address;
-
-            GuestSingleton.Instance.GetGuests(tempGuest);
+            await GuestSingleton.Instance.GetGuestAsync();
         }
+
+        //public void CreateGuest()
+        //{
+        //    Guest tempGuest = new Model.Guest(Gvm.Guest_No, Gvm.Name, Gvm.Address);
+        //    tempGuest.Guest_No = Gvm.Guest_No;
+        //    tempGuest.Name = Gvm.Name;
+        //    tempGuest.Address = Gvm.Address;
+        //}
     }
 }

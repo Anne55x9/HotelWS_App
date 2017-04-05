@@ -48,7 +48,7 @@ namespace HotelWS_App.ViewModel
             GuestList = GuestSingleton.Instance.Guests;
             gh = new Handler.GuestHandler(this);
 
-            GetGuestCommand = new RelayCommand(gh.GetGuest, null);
+            //GetGuestCommand = new RelayCommand(gh.GetGuest, null);
         }
     }
 

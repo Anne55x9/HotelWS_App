@@ -18,7 +18,7 @@ namespace HotelWS_App.Web
 
         const string serverUrl = "http://hotelappwebsevices20170403062059.azurewebsites.net/";
 
-        public static ObservableCollection<Guest> LoadEventsFromJsonAsync()
+        public static async Task<ObservableCollection<Guest>> LoadEventsFromJsonAsync()
         {
             //HttpClientHandler handler = new HttpClientHandler();
             //HttpClient client = new HttpClient();
@@ -34,17 +34,16 @@ namespace HotelWS_App.Web
 
                 try
                 {
-                    HttpResponseMessage response = client1.GetAsync("api/Guests").Result;
+                    HttpResponseMessage response = await client1.GetAsync("api/Guests");
 
                     if (response.IsSuccessStatusCode)
                     {
-
-
-                        //Temp_list = response.Content.ReadAsAsync<ObservableCollection<Guest>>().Result;
+                        Temp_list = await response.Content.ReadAsAsync<ObservableCollection<Guest>>();
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    System.Diagnostics.Debug.Write(e);
                     Temp_list = null;
 
                 }

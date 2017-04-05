@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HotelWS_App.Web;
+
 
 namespace HotelWS_App.Model
 {
@@ -20,34 +22,37 @@ namespace HotelWS_App.Model
                 {
                     _instance = new GuestSingleton();
                 }
-                return Instance; }
+                return _instance; }
 
         }
 
-        public ObservableCollection<Guest> Guests { get; set; }
+  
+
+            public ObservableCollection<Guest> Guests { get; set; }
 
         private GuestSingleton()
         {
             Guests = new ObservableCollection<Guest>();
-            
+            GetGuestAsync();
+           
         }
 
-        public void GetGuests(Guest newGuest)
-        {
-            Guests.Add(newGuest);
-            //Web.LoadGuestFromJson();
-        }
-
-        ////Foreach over GetAsyncGuest.
-
-        //public async Task GetGuestAsync()
+        //public void GetGuests(Guest newGuest)
         //{
-        //    foreach (var item in await Web.GetAsyncGuest())
-        //    {
-        //        this.Guests.Add(item);
-        //    }
-
+        //    Guests.Add(newGuest);
+        //    WebServices.LoadEventsFromJsonAsync();
         //}
+
+        //Foreach over GetAsyncGuest.
+
+        public async Task GetGuestAsync()
+        {
+            foreach (var item in await WebServices.LoadEventsFromJsonAsync())
+            {
+                this.Guests.Add(item);
+            }
+
+        }
 
         //public async void LoadJson()
         //{
