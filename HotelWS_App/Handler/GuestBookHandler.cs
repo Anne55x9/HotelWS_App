@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HotelWS_App.Handler
 {
-    class GuestBookHandler
+    public class GuestBookHandler
     {
+
     }
 }

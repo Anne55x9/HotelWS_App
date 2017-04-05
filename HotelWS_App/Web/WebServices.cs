@@ -20,9 +20,6 @@ namespace HotelWS_App.Web
 
         public static async Task<ObservableCollection<Guest>> LoadEventsFromJsonAsync()
         {
-            //HttpClientHandler handler = new HttpClientHandler();
-            //HttpClient client = new HttpClient();
-            //handler.UseDefaultCredentials = true;
 
             ObservableCollection<Guest> Temp_list = new ObservableCollection<Guest>();
 
@@ -43,15 +40,67 @@ namespace HotelWS_App.Web
                 }
                 catch (Exception e)
                 {
-                    System.Diagnostics.Debug.Write(e);
+                    System.Diagnostics.Debug.Write($"Exception: {e}");
                     Temp_list = null;
 
                 }
 
                 return Temp_list;
             }
+        
         }
 
+        public static void PostGuestAsync(Guest newGuest)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
+                //string urlStringPost = "api/Guests/";
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                //try
+                //{
+                    
+                    var postResponse = client.PostAsJsonAsync<Guest>("api/Guests", newGuest).Result;
+                   
+
+                //    if (postResponse.IsSuccessStatusCode)
+                //    {
+                        
+                //    }
+                //}
+                //catch (Exception)
+                //{
+                //    throw;
+                //}
+            }
+        }
+
+        public static void PutAsyncGuest(int guest_No, Guest newGuest)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.BaseAddress = new Uri(serverUrl);
+                client.DefaultRequestHeaders.Clear();
+                string urlStringPut = $"api/Guests/{newGuest.Guest_No}";
+
+                //try
+                //{
+                    var postResponse = client.PutAsJsonAsync<Guest>(urlStringPut, newGuest).Result;
+
+                //    if (postResponse.IsSuccessStatusCode)
+                //    {
+                      
+                //    }
+                //}
+                //catch (Exception)
+                //{
+
+                //    throw;
+                //}
+            }
+        }
     }
 }

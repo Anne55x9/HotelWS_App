@@ -23,12 +23,26 @@ namespace HotelWS_App.Handler
             await GuestSingleton.Instance.GetGuestAsync();
         }
 
-        //public void CreateGuest()
-        //{
-        //    Guest tempGuest = new Model.Guest(Gvm.Guest_No, Gvm.Name, Gvm.Address);
-        //    tempGuest.Guest_No = Gvm.Guest_No;
-        //    tempGuest.Name = Gvm.Name;
-        //    tempGuest.Address = Gvm.Address;
-        //}
+        public void CreateGuestHandler()
+        {
+            Guest tempGuest = new Guest(Gvm.Guest_No, Gvm.Name, Gvm.Address);
+            tempGuest.Guest_No = Gvm.Guest_No;
+            tempGuest.Name = Gvm.Name;
+            tempGuest.Address = Gvm.Address;
+           GuestSingleton.Instance.PostGuest(tempGuest);
+        }
+
+        public void PutGuestHandler()
+        {
+            GuestSingleton.Instance.PutGuest(Gvm.Guest_No, Gvm.SelectedGuest);
+            //Singleton.Instance.GuestsCollection.Add(Gvm.SelectedGuest);
+        }
+
+        public void RemoveGuestHandler()
+        {
+            GuestSingleton.Instance.Guests.Remove(Gvm.SelectedGuest);
+            //Singleton.Instance.RemoveGuestHandler(Gvm.SelectedGuest.Guest_No);
+        }
+
     }
 }

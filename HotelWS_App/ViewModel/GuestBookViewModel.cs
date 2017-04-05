@@ -41,7 +41,13 @@ namespace HotelWS_App.ViewModel
 
         public ICommand GetGuestCommand { get; set; }
 
-        
+        private Guest _selectedGuest;
+
+        public Guest SelectedGuest
+        {
+            get { return _selectedGuest; }
+            set { _selectedGuest = value; OnPropertyChanged(nameof(SelectedGuest)); }
+        }
 
         public GuestBookViewModel()
         {

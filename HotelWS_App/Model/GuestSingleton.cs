@@ -26,8 +26,6 @@ namespace HotelWS_App.Model
 
         }
 
-  
-
             public ObservableCollection<Guest> Guests { get; set; }
 
         private GuestSingleton()
@@ -37,11 +35,6 @@ namespace HotelWS_App.Model
            
         }
 
-        //public void GetGuests(Guest newGuest)
-        //{
-        //    Guests.Add(newGuest);
-        //    WebServices.LoadEventsFromJsonAsync();
-        //}
 
         //Foreach over GetAsyncGuest.
 
@@ -54,18 +47,19 @@ namespace HotelWS_App.Model
 
         }
 
-        //public async void LoadJson()
-        //{
-        //    try
-        //    {
-        //        Guests = await Web.LoadGuestFromJson();
-        //    }
-        //    catch (Exception e)
-        //    {
+        public void PostGuest(Guest newGuest)
+        {
+            WebServices.PostGuestAsync(newGuest);
+            Guests.Add(newGuest);
+        }
 
-        //        System.Diagnostics.Debug.Write($"Exception: {e}");
-        //    }
-        //}
+        public void PutGuest(int guest_No, Guest newGuest)
+        {
+            WebServices.PutAsyncGuest(guest_No, newGuest);
+           
+            Guests.Clear();
+            GetGuestAsync();
+        }
 
     }
 }

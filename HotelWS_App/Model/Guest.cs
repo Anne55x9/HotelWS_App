@@ -26,7 +26,7 @@ namespace HotelWS_App.Model
 
         public override string ToString()
         {
-            return "Gæstens nr:" + Guest_No + "Navn:" + Name + "Adresse:" + Address;
+            return "Gæstens nr: " + Guest_No + "Navn: " + Name + "Adresse: " + Address;
         }
 
     }
